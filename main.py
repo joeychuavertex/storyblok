@@ -12,7 +12,7 @@ api_key = st.text_input('API Key')
 def st_pandas_to_csv_download_link(_df: pd.DataFrame, file_name: str = "dataframe.csv"):
     csv_exp = _df.to_csv(index=False)
     b64 = base64.b64encode(csv_exp.encode()).decode()  # some strings <-> bytes conversions necessary here
-    href = f'<a href="data:file/csv;base64,{b64}" download="{file_name}" > Download Dataframe (CSV) </a>'
+    href = f'<a href="data:file/csv;base64,{b64}" download="{file_name}" > Download {csvfilename} </a>'
     st.markdown(href, unsafe_allow_html=True)
 
 if api_key:
@@ -80,8 +80,9 @@ if api_key:
 
         df_name = "df_" + csvfilename + ".csv"
         df = pd.DataFrame(flat_data, columns=fields)
-        st.header(csvfilename)
-        st.write(df)
-        csv = df.to_csv(df_name, index=False)
 
+        st.header(csvfilename)
         st_pandas_to_csv_download_link(df, file_name=f"{csvfilename}.csv")
+        st.write(df)
+        # csv = df.to_csv(df_name, index=False)
+
