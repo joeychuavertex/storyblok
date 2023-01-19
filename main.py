@@ -1,3 +1,5 @@
+import base64
+
 import requests
 import streamlit as st
 from stqdm import stqdm
@@ -5,6 +7,12 @@ import pandas as pd
 from datetime import datetime
 
 api_key = st.text_input('API Key')
+
+def st_pandas_to_csv_download_link(_df:pd.DataFrame, file_name:str = "dataframe.csv"):
+    csv_exp = _df.to_csv(index=False)
+    b64 = base64.b64encode(csv_exp.encode()).decode()  # some strings <-> bytes conversions necessary here
+    href = f'<a href="data:file/csv;base64,{b64}" download="{file_name}" > Download Dataframe (CSV) </a>'
+    st.markdown(href, unsafe_allow_html=True)
 
 if api_key:
     api = requests.Session()
@@ -74,10 +82,11 @@ if api_key:
         st.write(csvfilename)
         st.write(df)
         csv = df.to_csv(df_name, index=False)
-        st.download_button(
-            label=f"Download {csvfilename} as CSV",
-            data=csv,
-            file_name='file.csv',
-            # mime='text/csv',
-        )
+        st_pandas_to_csv_download_link(df, file_name="my_file.csv")
+        # st.download_button(
+        #     label=f"Download {csvfilename} as CSV",
+        #     data=csv,
+        #     file_name="file.csv",
+        #     # mime='text/csv',
+        # )
 
