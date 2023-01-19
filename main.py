@@ -82,12 +82,12 @@ if api_key:
                 except:
                     continue
 
-            st.write(pd.read_csv(csvfile))
-            st.download_button(
-                label=f"Download {csvfile} as CSV",
-                data=csvfile,
-                file_name='file.csv',
-                mime='text/csv',
-            )
+        st.write(pd.read_csv(csvfile))
+        st.download_button(
+            label=f"Download {csvfile} as CSV",
+            data=csvfile,
+            file_name='file.csv',
+            mime='text/csv',
+        )
 
 
