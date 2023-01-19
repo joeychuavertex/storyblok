@@ -81,12 +81,13 @@ if api_key:
                     writer.writerow(row)
                 except:
                     continue
-            df = pd.read_csv(csvfile)
-            st.download_button(
-                label=f"Download {df} as CSV",
-                data=df,
-                file_name='filename',
-                mime='text/csv',
-            )
+        f = open(csvfilename + '.csv', 'r')
+        df = pd.read_csv(f)
+        st.download_button(
+            label=f"Download {df} as CSV",
+            data=df,
+            file_name='filename',
+            mime='text/csv',
+        )
 
 
