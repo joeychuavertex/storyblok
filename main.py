@@ -82,12 +82,10 @@ if api_key:
                 except:
                     continue
 
-        path = os.getcwd()
-        csv_files = glob.glob(os.path.join(path, "*.csv"))
-
-        st.write(pd.read_csv(csvfile))
+        csv = fund + '-' + str(datetime.today().strftime('%Y-%m-%d')) + '.csv'
+        st.write(pd.read_csv(csv))
         st.download_button(
-            label=f"Download {csvfile} as CSV",
+            label=f"Download {csv} as CSV",
             data=csvfile,
             file_name='file.csv',
             mime='text/csv',
