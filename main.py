@@ -20,11 +20,11 @@ if api_key:
 
     spaces = {
         'ISRAEL': st.secrets["ISRAEL"],
-        'HEALTHCARE(NEW)': st.secrets["HEALTHCARE(NEW)"],
-        'GROWTH(NEW)': st.secrets["GROWTH(NEW)"],
-        'CHINA(NEW)': st.secrets["CHINA(NEW)"],
-        'SEA(NEW)': st.secrets["SEA(NEW)"],
-        'USA(NEW)': st.secrets["USA(NEW)"]
+        'HEALTHCARE(NEW)': st.secrets["HEALTHCARENEW"],
+        'GROWTH(NEW)': st.secrets["GROWTHNEW"],
+        'CHINA(NEW)': st.secrets["CHINANEW"],
+        'SEA(NEW)': st.secrets["SEANEW"],
+        'US(NEW)': st.secrets["USNEW"]
     }
 
     for fund, id in stqdm(spaces.items()):
