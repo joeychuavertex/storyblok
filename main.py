@@ -82,8 +82,8 @@ if api_key:
                 except:
                     continue
 
-        csv = fund + '-' + str(datetime.today().strftime('%Y-%m-%d')) + '.csv'
-        st.write(pd.read_csv(csv))
+        path = os.getcwd()
+        st.write(pd.read_csv(path))
         st.download_button(
             label=f"Download {csv} as CSV",
             data=csvfile,
