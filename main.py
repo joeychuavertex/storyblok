@@ -82,6 +82,9 @@ if api_key:
                 except:
                     continue
 
+        path = os.getcwd()
+        csv_files = glob.glob(os.path.join(path, "*.csv"))
+
         st.write(pd.read_csv(csvfile))
         st.download_button(
             label=f"Download {csvfile} as CSV",
