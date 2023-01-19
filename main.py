@@ -73,7 +73,7 @@ if api_key:
             df_name = "df_" + csvfilename
             df = pd.DataFrame(flat_data[i], columns=fields)
             st.write(df)
-            csv = df.to_csv(df_name, index=False)
+            csv = df.to_csv(df_name, index=False).encode('utf-8')
             st.download_button(
                 label=f"Download {csvfilename} as CSV",
                 data=csv,
