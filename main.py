@@ -72,22 +72,17 @@ if api_key:
 
         csvfilename = fund + '-' + str(datetime.today().strftime('%Y-%m-%d'))
 
-        # Write the CSV file
-        with open(csvfilename + '.csv', 'w', newline='') as csvfile:
-            writer = csv.DictWriter(csvfile, fieldnames=fields)
-            writer.writeheader()
-            for row in flat_data:
-                try:
-                    writer.writerow(row)
-                except:
-                    continue
-        f = open(csvfilename + '.csv', 'r')
-        df = pd.read_csv(f)
-        st.download_button(
-            label=f"Download {df} as CSV",
-            data=df,
-            file_name='filename',
-            mime='text/csv',
-        )
+        for i in range(6):
+            df_name = "df_" + csvfilename
+            df = pd.DataFrame(flat_data[i], columns=fields)
+            st.write(df)
+            csv = df.to_csv(df_name + '.csv', index=False)
+            st.download_button(
+                label=f"Download {csvfilename} as CSV",
+                data=csv,
+                file_name='file.csv',
+                mime='text/csv',
+            )
+
 
 
