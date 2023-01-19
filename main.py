@@ -69,7 +69,7 @@ if api_key:
         csvfilename = fund + '-' + str(datetime.today().strftime('%Y-%m-%d'))
         print('Generating file', csvfilename)
 
-        df_name = "df_" + csvfilename
+        df_name = "df_" + csvfilename + ".csv"
         df = pd.DataFrame(flat_data, columns=fields)
         st.write(df)
         csv = df.to_csv(df_name, index=False)
