@@ -3,10 +3,10 @@ import glob
 
 import requests
 import csv
-import time
 import streamlit as st
 from stqdm import stqdm
 import pandas as pd
+from datetime import datetime
 
 api_key = st.text_input('API Key')
 
@@ -70,7 +70,7 @@ if api_key:
         # Get all fields of one object so we can define the header of the CSV
         fields = list(flat_data[0].keys())
 
-        csvfilename = fund + '-' + str(int(time.time()))
+        csvfilename = fund + '-' + str(datetime.today().strftime('%Y-%m-%d'))
 
         # Write the CSV file
         with open(csvfilename + '.csv', 'w', newline='') as csvfile:
@@ -82,16 +82,12 @@ if api_key:
                 except:
                     continue
 
+            st.write(pd.read_csv(csvfile))
+            st.download_button(
+                label=f"Download {csvfile} as CSV",
+                data=csvfile,
+                file_name='file.csv',
+                mime='text/csv',
+            )
 
-    path = os.getcwd()
-    csv_files = glob.glob(os.path.join(path, "*.csv"))
-
-    for file in csv_files:
-        st.write(pd.read_csv(file))
-        st.download_button(
-            label=f"Download {file} as CSV",
-            data=file,
-            file_name='file.csv',
-            mime='text/csv',
-        )
 
