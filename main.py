@@ -73,10 +73,10 @@ if api_key:
         df = pd.DataFrame(flat_data, columns=fields)
         st.write(df)
         csv = df.to_csv(df_name, index=False)
-        st.download_button(
-            label=f"Download {csvfilename} as CSV",
-            data=csv,
-            file_name='file.csv',
-            mime='text/csv',
-        )
+        # st.download_button(
+        #     label=f"Download {csvfilename} as CSV",
+        #     data=csv,
+        #     file_name='file.csv',
+        #     mime='text/csv',
+        # )
 
