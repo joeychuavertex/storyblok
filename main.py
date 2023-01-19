@@ -69,17 +69,14 @@ if api_key:
         csvfilename = fund + '-' + str(datetime.today().strftime('%Y-%m-%d'))
         print('Generating file', csvfilename)
 
-        for i in range(6):
-            df_name = "df_" + csvfilename
-            df = pd.DataFrame(flat_data[i], columns=fields)
-            st.write(df)
-            csv = df.to_csv(df_name, index=False).encode('utf-8')
-            st.download_button(
-                label=f"Download {csvfilename} as CSV",
-                data=csv,
-                file_name='file.csv',
-                mime='text/csv',
-            )
-
-
+        df_name = "df_" + csvfilename
+        df = pd.DataFrame(flat_data, columns=fields)
+        st.write(df)
+        csv = df.to_csv(df_name, index=False).encode('utf-8')
+        st.download_button(
+            label=f"Download {csvfilename} as CSV",
+            data=csv,
+            file_name='file.csv',
+            mime='text/csv',
+        )
 
